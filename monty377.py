@@ -1,20 +1,19 @@
-def czy_palindrom(slowo):
+def czy_palindrom(slowo:str) -> bool:
+
     """
     
-    sprawdza,czy podane słowo jest palindromem:
+    Sprawdza,czy podane słowo jest palindromem:
     Argumenty:
     slowo(str): Słowo do sprawdzenia
     Zwraca:
-    boolean: True,jeśli słowo jest palindromem,w przeciwnym razie False
+    bool: True,jeśli słowo jest palindromem,w przeciwnym razie False
     """
-    slowo ="kajak"
-    odwrocone_slowo =slowo[::-1]
+    return slowo == slowo[::-1]
+print(czy_palindrom("kajak")) # True
+print(czy_palindrom("python")) # False
+print(czy_palindrom("potop")) # True
+print(czy_palindrom("python")) # False
     
-    if slowo == slowo[::-1]:
-        print(czy_palindrom("kajak"))
-        return True
-    else:
-        return False
     
     
         
