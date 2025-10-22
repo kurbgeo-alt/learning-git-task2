@@ -13,28 +13,36 @@ class Media:
         self.play_counter += 1
 
     def generate_views(self):
-        self.play_counter *= 10        
+        self.play_counter += random.randint(1,100)       
 
 
 class Movie(Media):
     """Klasa reprezentująca film."""
-    def __init__(self, title, year, genre, play_counter, duration):
+    def __init__(self, title, year, genre, play_counter):
         super().__init__(title, year, genre,play_counter)
-        self.duration = duration  # Czas trwania w minutach
+        self.title = title
+        self.year = year
+        self.genre = genre
+        self.play_counter = play_counter
+        
 
-    def __str__(self):
-        return super().__str__() + f", {self.duration} min"
+    
 
 
 class Series(Media):
     """Klasa reprezentująca serial."""
-    def __init__(self, title, year, genre,play_counter, seasons):
-        super().__init__(title, year, genre,play_counter)
+    def __init__(self, title, year, genre,play_counter, seasons,episodes,):
+        self.title = title
+        self.year = year
+        self.genre = genre
+        self.play_counter = play_counter
         self.seasons = seasons  # Liczba sezonów
+        self.episodes = episodes # Liczba odcinków
+        
 
     def __str__(self):
-        return super().__str__() + f", {self.seasons} sezonów"
-
+        return super().__str__() + f", S{self.season:02}E {self.episode:02}"
+    
 
 class MediaLibrary:
     """Klasa zarządzająca biblioteką filmów i seriali."""
@@ -47,9 +55,18 @@ class MediaLibrary:
     def get_movies(self):
           return [i for i in self.collection if type(i) == Movie]
     def get_series(self):
+        
         return[i for i in self.collection if type(i) == Series]
     def generate_views(self):
-     k = random.choice(self.collection)      
+        media= random.choice(self.collection)
+        media.play_counter +=random.randit(1,100)
+        
+        
+    def run_views_generation(self, times =10) :
+        for _ in range(times):
+            self.generate_views()
+        
+         
          
 
 
@@ -67,20 +84,20 @@ class MediaLibrary:
 #
 
 
-    def top_titles(self, n=5, content_type=None):
+    def top_titles(self, n=5, content_type =None):
         """
         Zwraca najpopularniejsze tytuły na podstawie oceny.
         :param n: Liczba tytułów do zwrócenia
         :param content_type: Typ (film/serial) lub None dla obu
         :return: Lista najpopularniejszych tytułów
         """
-        filtered = self.collection
-        if content_type:
-            filtered = [item for item in self.collection if item["content_type"]]
         
-        # Sortowanie po ocenie malejąco
-        sorted_titles = sorted(filtered, key=lambda x: x["play_counter"], reverse=True)
-        return sorted_titles[:n]
+        if content_type == "Movie": 
+         filtered = [item for item in self.collection if isinstance(item, Movie)]
+        elif content_type == "Series":
+            filtered = [item for item in self.collection if isinstance(item,Series)]
+
+ 
 
  
 # Przykład użycia
@@ -88,10 +105,10 @@ if __name__ == "__main__":
     library = MediaLibrary()
 
     # Dodawanie filmów i seriali
-    library.add_media(Movie("Inception", 2010, "Sci-Fi",22, 148))
-    library.add_media(Series("Breaking Bad", 2008, "Drama", 75, 155))
-    library.add_media(Movie("The Matrix", 1999, "Sci-Fi",234, 136))
-    library.add_media(Movie("James Bond",2021, "Action", 345,154))
+    library.add_media(Movie("Inception", 2010, "Sci-Fi",217))
+    library.add_media(Series("Breaking Bad", 2008, "Drama",345, 15, 155))
+    library.add_media(Movie("The Matrix", 1999, "Sci-Fi", 136))
+    library.add_media(Movie("James Bond",2021, "Action",154))
 
     # Wyświetlanie wszystkich mediów
     print("Biblioteka filmów:")
@@ -104,12 +121,15 @@ if __name__ == "__main__":
     results = library.search_by_title("James Bond")
     for media in results:
         print(media)
-    print("Najpopularniejsze filmy i seriale dnia {data}")    
-    print("Top 3 filmy:") 
-    for title in library.top_titles(3, content_type="Movie"):
-        print(f"{Movie.title} ({Movie.year}) - Ocena: {Movie.play_counter}")
-
-    print("\nTop 2 seriale:")
-
-    for title in library.top_titles(2, content_type="Series"):
-        print(f"{Series.title} {Series.year} - Ocena: {Series.play_counter}") 
+        print("Najpopularniejsze filmy i seriale dnia {data}")    
+        print("Top 3 filmy:")    
+    for media in library.top_titles(3, "Movie"):
+        print(f"{media.title} ({media.year}) - Odtworzenia: {media.play_counter}")
+    for media in library.top_titles(2, "Series"):
+        print(f"{media.title} {media.year} - Odtworzenia: {media.play_counter}")
+if __name__ == "__main__":
+    library = MediaLibrary()
+    
+    
+  
+  
