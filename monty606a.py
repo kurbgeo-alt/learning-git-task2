@@ -60,7 +60,7 @@ stations2 =Table(
 meta.create_all(engine)
 print(engine.table_names())
 
-from .sqlalchemy_ex_02 import stations, engine
+from sqlalchemy import stations, engine
 
 ins = stations.insert()
 
@@ -78,7 +78,7 @@ conn.execute(ins,[
     {'station': 'USC00511918', 'latitude': '21.4712', 'longitude': '-157.8025', 'elevation': 3.4,  'name': 'HONOLULU OBSERVATORY 702.2','country': 'US', 'state': 'HI'},
     {'station': 'USC00516128', 'latitude': '21.3331', 'longitude': '-157.8915', 'elevation': 152.4, 'name': 'MANOA LYON ARBO 785.2', 'country': 'US', 'state': 'HI'},
 ])
-from.sqlalchemy_ex_02 import stations2,engine
+from sqlalchemy import stations2,engine
 ins = stations2.insert().values(stations2='USC0051937', date='2010--01-01',precip=0.0,tobs=65)
 conn = engine.connect()
 result = conn.execute(ins)
@@ -113,7 +113,11 @@ conn.execute(ins,[
     
 ])
 conn.execute("SELECT * FROM stations LIMIT 5").fetchall()
-
+conn = engine.connect()
+s = stations.select().where (stations.c.state == 'HI')
+result = conn.execute(s)
+for row in result:
+    print(row)
 
 
     
