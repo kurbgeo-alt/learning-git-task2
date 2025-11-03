@@ -1,10 +1,11 @@
-freq=0,05
-rate =0,12
+freq=0.05
+rate =0.12
 years =5
 pv = 120000
 rate /= freq
 nper = years*freq
 import numpy_financial as npf
+
 interest_equal = -np.around(npf.ipmt(rate,periods,nper,pv),2)
 interest_equal[:10]
 np.set_printoptions(supress= True)
