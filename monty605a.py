@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
    create_travels_sql = """
    -- travel table
-   CREATE TABLE IF NOT EXISTS travel (
+   CREATE TABLE IF NOT EXISTS travels (
       id integer PRIMARY KEY,
       nazwa _kraju text NOT NULL,
       data_wyjazdu text,
@@ -58,17 +58,14 @@ if __name__ == "__main__":
 
    conn = create_connection(db_file)
    if conn is not None:
-       execute_sql(conn, create_travel_sql)
-       execute_sql(conn, create__sql)
+       execute_sql(conn, create_travels_sql)
+       execute_sql(conn, create__places_sql)
        conn.close()
-   conn = create_connection("database.db")
-cur = conn.cursor()
-cur.execute("SELECT * FROM places")
-rows = cur.fetchall()
+   
 
  
 
-cur.fetchone()
+
 def add_(conn, travel):
    """
    Create a new into the travel table
@@ -90,7 +87,7 @@ def add_travel(conn, travel):
    :param travel:
    :return: travel id
    """
-   sql = '''INSERT INTO travels(nazwa_kraju, data_wyjazdu, data_przyjazdu)
+   sql = '''INSERT INTO travels(nazwa_kraju, data_wyjazdu, data_przyjazdu) 
              VALUES(?,?,?)'''
    cur = conn.cursor()
    cur.execute(sql, travel)
