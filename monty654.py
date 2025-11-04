@@ -1,30 +1,24 @@
-In [4]: import pandas as pd
+ import pandas as pd
 
 
-In [5]: import numpy as np
+ import numpy as np
+ data = pd.read_html('fatal-police-shootings-data(1).csv', header=0)
+ table = pd.DataFrame(data[0])
+ table.rename(columns = {'name': 'IMIĘ', 'data': 'DATA', 'manner of death': 'SPOSÓb ŚMIERCI', 'armed':'uzbrojony',} inplace = True)
+ table.head()
+
+illness_dict = dict(zip(df['race'].unique(),[]))
+
+ df['sign_of_mental_illness'] = df['race '].map
+ df[day_of_week ]= df['Interwencje'].apply(lambda x: day_of_week(x))
+ chart_set_axis({
+    'name':'x^2'
+    'day_of_week':{'day': Monday, 'Interwencja': True}
+
+ })
+ data = pd.read_csv('dane dotyczące populacji w poszczególnych stanach USA')
+ data = pd.read_csv(' dane dotyczące skrótów poszczególnych stanów.')
 
 
-In [6]: data = pd.read_html('fatal-police-shootings-data(1).csv', header=0)
-In[7]: table = pd.DataFrame(data[0])
-In table.rename(columns = {'name': 'IMIĘ', 'data': 'DATA', 'manner of death': 'SPOSÓb ŚMIERCI', 'armed':'uzbrojony',} inplace = True)
-In table.head()
-In [8]: sign_of_mental_illness_dict =dict(zip('race').unique(),
 
-   ...: df
-
-   ...: 
-
-   ...: 
-
-   ...: 
-
-   ...: 
-
-   ...: 
-
-   ...: df{'fatal_police-shootings-data(1).csv') = df('race').map(sign_of_mental_illness_dict)
-
-Cell In[8], line 8
-
-df{'fatal_police-shootings-data(1).csv') = df('race').map(sign_of_mental_illness_dict)
 
