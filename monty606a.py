@@ -1,33 +1,6 @@
-import sqlite3
-from sqlite3 import Error
 
-def create_connection(db_file):
-   """ create a database connection to a SQLite database """
-   conn = None
-   try:
-       conn = sqlite3.connect(db_file)
-       print(f"Connected to {db_file}, sqlite version: {sqlite3.version}")
-   except Error as e:
-       print(e)
-   finally:
-       if conn:
-           conn.close()
 
-def create_connection_in_memory():
-   """ create a database connection to a SQLite database """
-   conn = None
-   try:
-       conn = sqlite3.connect(":memory:")
-       print(f"Connected, sqlite version: {sqlite3.version}")
-   except Error as e:
-       print(e)
-   finally:
-       if conn:
-           conn.close()
 
-if __name__ == '__main__':
-   create_connection(r"database.db")
-   create_connection_in_memory()
 from sqlalchemy import Table, Column, Integer, String, MetaData
 from sqlalchemy import create_engine
 
@@ -44,6 +17,7 @@ stations = Table(
    Column('elevation', Integer),
    Column('name', String),
    Column('country', String),
+   Column('state',String),
 )
 stations2 =Table(
     'stations2',meta,
@@ -78,7 +52,7 @@ conn.execute(ins,[
     {'station': 'USC00511918', 'latitude': '21.4712', 'longitude': '-157.8025', 'elevation': 3.4,  'name': 'HONOLULU OBSERVATORY 702.2','country': 'US', 'state': 'HI'},
     {'station': 'USC00516128', 'latitude': '21.3331', 'longitude': '-157.8915', 'elevation': 152.4, 'name': 'MANOA LYON ARBO 785.2', 'country': 'US', 'state': 'HI'},
 ])
-from sqlalchemy import stations2,engine
+
 ins = stations2.insert().values(stations2='USC0051937', date='2010--01-01',precip=0.0,tobs=65)
 conn = engine.connect()
 result = conn.execute(ins)
