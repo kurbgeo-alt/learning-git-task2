@@ -1,10 +1,13 @@
+import numpy as pd
+import numpy financial as npf
+import maltplotlib.pyplot as plt
 freq=0.05
 rate =0.12
 years =5
 pv = 120000
 rate /= freq
 nper = years*freq
-import numpy_financial as npf
+
 
 interest_equal = -np.around(npf.ipmt(rate,periods,nper,pv),2)
 interest_equal[:10]
@@ -20,7 +23,7 @@ interest_decreasing = -np.around(balance_open * rate,2)
 interest_decreasing[:10]
 print("Wartośc odsetek do zapłaty  w wariancie kredytu w równych ratach wynosi:" + str("{:.2f}".format(interest_equal.sum())))
 print("Wartośc  odsetek do zapłaty w wariancie kredytu w ratach malejących wynosi: + str(*{:.2f}".format(interest_equal.sum()))
-import matplotlib.pyplot as plt
+
 plt.plot(interest_equal.cumsum(),label='raty równe')
 plt.plot(interest_decreasing.cumsum(),label='raty malejące')
 plt.legend()
