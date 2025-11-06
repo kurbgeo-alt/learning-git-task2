@@ -1,0 +1,56 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f109c478-d78d-4e31-8904-11434381b167",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import matplotlib.pyplot as plt\n",
+    "data = pd.read_csv('HRDataset(1).csv')\n",
+    "plt.figure(figsize(8,6)\n",
+    "plt.scatter(ManagerName,ManagerID,PerformanceScore,color = 'red'\n",
+    "plt.xlabel('ManagerName and ManagerID')\n",
+    "plt.ylabel('Performance')\n",
+    "plt.grid()\n",
+    "plt.show()\n",
+    "plt.figure(figsize(8,6))\n",
+    "plt.scatter(RecruitmentSource,JobSeniority,color = 'green')\n",
+    "plt.xlabel(\"RecruitmentScore\")\n",
+    "plt.ylabel(\"JobSeniority\")\n",
+    "plt.grid()\n",
+    "plt.show()            \n",
+    "plt.figure(figsize(8,6))\n",
+    "plt.scatter(MaritalDesc,EmpSatisfaction,color = 'orange')\n",
+    "plt.xlabel(\"MaritalDesc\")\n",
+    "plt.ylabel(\"EmpSatisfaction\")            \n",
+    "plt.grid()\n",
+    "            \n",
+    "            \n"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python [conda env:base] *",
+   "language": "python",
+   "name": "conda-base-py"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
