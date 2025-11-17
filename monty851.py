@@ -16,7 +16,7 @@ r = rate_annual/12 #miesięczna stopa procentowa
 
 #Wyliczenie miesięcznej wpłaty(PMT) z użyciem numpy financial
 #npf.pmt(rate,nper,pv,fv,when)
-PMT= -npf.pmt(rate =r,nper = n_months,pV=0, fv = -FV,when ='end')
+PMT= -npf.pmt(rate =r,nper = n_months,pv=0, fv = FV)
 
 
 
@@ -26,11 +26,13 @@ interests = np.zeros(n_months)
 
 
 balance[0]= PMT
+deposits[0] = PMT
+interests[0]=0
 
 
 for i in range(1,n_months):
     balance[i] = balance[i-1]  * (1 + r) + PMT
-    deposits[i] = PMT * (i +1) 
+    deposits[i] = deposits[i-1] + PMT
     interests[i] = balance[i] - deposits[i]
 
     
