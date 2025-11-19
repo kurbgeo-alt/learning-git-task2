@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 # Wczytanie danych
 df = pd.read_csv('fatal-police-shootings-data.csv')
 
-# Poprawne przetwarzanie kolumny z chorobami psychicznymi
 df['signs_of_mental_illness'] = df['signs_of_mental_illness'].astype(str).str.lower() == "true"
 
 # Grupowanie wg rasy i chorób psychicznych
@@ -24,7 +23,7 @@ top_value = group['percent_with_mental_illness'].max()
 print("\nRasa z najwyższym odsetkiem przypadków z chorobami psychicznymi:")
 print(f"{top_race}: {top_value:.2f}%")
 
-# --- Dni tygodnia ---
+# Dni tygodnia
 df['date'] = pd.to_datetime(df['date'])
 df['day_of_week'] = df['date'].dt.day_name()
 
@@ -88,17 +87,16 @@ counts_by_state.columns = ['abbreviation', 'incidents']
 
 merged = counts_by_state.merge(pop, on='abbreviation', how='left')
 
-# Sprawdzenie braków
+
 missing = merged[merged['population'].isna()]
 if not missing.empty:
     print("\n⚠ Brak dopasowanej populacji dla:")
     print(missing[['abbreviation', 'incidents']])
-
-# Obliczenia
 merged['incidents_per_1000'] = merged['incidents'] / merged['population'] * 1000
 
 print("\nPrzykładowe dane:")
 print(merged.head())
+
 
 
 
